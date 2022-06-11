@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <title>Toko Online</title>
+    <title>Inventaris Online</title>
     <style>
     h1 {
         font-size: 2em;
@@ -40,7 +40,7 @@
                 <div class="col-sm-10">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" step="50" class="form-control" id="harga_barang" name="harga_barang"
+                        <input type="number" class="form-control" id="harga_barang" name="harga_barang"
                             value="0" required="required">
                     </div>
                 </div>
@@ -58,20 +58,20 @@
             </div>
 
             <div class="row mb-3">
-              <label for="orig_lang" class="col-sm-2 col-form-label">Made In </label>
+              <label for="orig_lang" class="col-sm-2 col-form-label">Made In *</label>
               <div class="col-sm-10">
-                <select class="form-select" id="asal_id" name="asal_id">
-                  <option selected="selected">-</option>
+                <select class="form-select" id="asal_id" name="asal_id" required="required">
+                  <option selected="selected" value="">-</option>
                   <!-- Auto Fill -->
                 </select>
               </div>
             </div>
 
             <div class="row mb-3">
-              <label for="orig_lang" class="col-sm-2 col-form-label">Kondisi </label>
+              <label for="orig_lang" class="col-sm-2 col-form-label">Kondisi *</label>
               <div class="col-sm-10">
-                <select class="form-select" id="id_kondisi" name="id_kondisi">
-                  <option selected="selected">-</option>
+                <select class="form-select" id="id_kondisi" name="id_kondisi" required="required">
+                  <option selected="selected" value="">-</option>
                   <!-- Auto Fill -->
                 </select>
               </div>
@@ -91,16 +91,26 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
             $(document).ready(function () {
-                $.get("../asal.php", function (response) {
-                    $.each(response, function (key, value) {
-                        $("#asal_id").append("<option value='"+ value.asal_id +"'>"+ value.country +"</option>")
-                    })
-                })
-                $.get("../kondisi.php", function (response) {
-                    $.each(response, function (key, value) {
-                        $("#id_kondisi").append("<option value='"+ value.id_kondisi +"'>"+ value.kondisi +"</option>")
-                    })
-                })
+                $.ajax({
+                    type: "GET",
+                    url: "../asal.php",
+                    async: false,
+                    success: function(response) { 
+                        $.each(response, function (key, value) {
+                            $("#asal_id").append("<option value='"+ value.asal_id +"'>"+ value.country +"</option>")
+                        })
+                     }
+                });
+                $.ajax({
+                    type: "GET",
+                    url: "../kondisi.php",
+                    async: false,
+                    success: function(response) { 
+                        $.each(response, function (key, value) {
+                            $("#id_kondisi").append("<option value='"+ value.id_kondisi +"'>"+ value.kondisi +"</option>")
+                        })
+                     }
+                });
                 var id = <?php $id = isset($_GET['id']) ? $_GET['id'] : 0; echo $id ?>;
                 $.get("../barang.php?action=readidBarang&id=" + id, function (data) {
                     $("#nama_barang").val(data[0]['nama_barang']);
@@ -113,7 +123,8 @@
                     event.preventDefault();
                     var data = $(this).serialize();
                     $.post("../barang.php?action=editBarang&id=" + id, data, function (response) {
-                        alert("Data barang baru berhasil ditambahkan");
+                        alert("Data berhasil diubah");
+                        window.location=document.referrer;
                     })
                 })
             });

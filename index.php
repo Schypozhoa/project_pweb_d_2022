@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <title>Toko Online</title>
+    <title>Inventaris Online</title>
     <style>
     h1 {
         font-size: 2em;
@@ -78,7 +78,7 @@
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
                                         <div class="btn-group btn-group-sm" style="float:right">                                    
                                             <a href="form/editBarang.php?id=` + value.ID + `" class="btn btn-outline-secondary fa fa-edit"></a>
-                                            <button type="button" id="deleteBarang" value="` + value.ID + `" class="btn btn-outline-danger fa fa-trash"></button>
+                                            <button type="button" id="deleteBarang" value="` + value.nama_barang + `&` +value.ID + `" class="btn btn-outline-danger fa fa-trash"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -94,11 +94,11 @@
         var existCondition = setInterval(function() {
         if ($('.card').length) {
             clearInterval(existCondition);       
-            $("#deleteBarang").click(function () {
-                alert($('.card').length);
-                $("#modalContent").text(this.value);
+            $('#dataHolder').on("click", '#deleteBarang', function () {
+                var data = this.value.split('&');
+                $("#modalContent").text("Anda yakin ingin menghapus barang " + data[0] + "?");
                 $("#modalDelete").modal('show');
-                $("#deleteBarangYes").val(this.value);
+                $("#deleteBarangYes").val(data[1]);
             });
             
         }
@@ -106,8 +106,9 @@
 
         $("#deleteBarangYes").click(function () {
             $("#modalDelete").modal('hide');
-            $.get("barang.php?action=deleteBarang&id" + this.value, function (data) {
-                alert(data);
+            $.get("barang.php?action=deleteBarang&id=" + this.value, function (data) {
+                alert("Barang berhasil dihapus");
+                location.reload();
             })
         });
         $("#deleteBarangNo").click(function () {

@@ -60,8 +60,15 @@ class Barang
     function deleteBarang($id)
     {
         $query = "DELETE FROM barang WHERE id = $id";
-        $sql = $this->db->query($query);
-        echo "Success";
+        $sql = $this->db->prepare($query);
+        try {
+            $sql->execute();
+            echo "Success";
+        } catch (\Exception $e) {
+            $sql->close();
+            http_response_code(500);
+            die($e->getMessage());
+        }
     }
 
     function createBarang($data)
@@ -99,7 +106,7 @@ class Barang
             $data[$key] = (strlen($value) > 0 ? $value : NULL);
         }
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
-        $query = "UPDATE barang SET nama_barang = ?, harga_barang = ?, stok_barang = ?, id_kondisi = ?, asal_id = ?  WHERE id = $id";
+        $query = "UPDATE barang SET nama_barang = ?, harga_barang = ?, stok_barang = ?, kondisi = ?, asal = ?  WHERE ID = $id";
         $sql = $this->db->prepare($query);
         $sql->bind_param(
             'siiii',
