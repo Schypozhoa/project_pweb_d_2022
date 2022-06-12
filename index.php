@@ -25,6 +25,71 @@
 </head>
 
 <body>
+    <!-- coba tampilan -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">Inventaris Online</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            </ul>
+                        </li>
+                        <form class="d-flex ms-2">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Manage Your Inventory</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this online Inventory</p>
+                </div>
+            </div>
+        </header>
+        <!-- akhir header -->
+
+        <!-- konten-->
+        <div class="container mt-5">
+        <a class="btn btn-primary justify-content-end" href="form/tambahBarang.php">Tambah</a>
+            <!--barang -->
+            <div class="row row-col-lg-4 justify-content-center my-5">
+                <div class="col mb-5">
+                    <div class="row g-3" id="dataHolder">
+                        <!-- Auto Fill -->
+                    </div>
+                </div>
+            </div>
+            <!-- akhir barang -->
+            <div class="row g-3 mt-3">
+                <div class="col d-grid mb-5">
+                    <button type="button" class="btn btn-primary" id="load"><i
+                            class="fa-solid fa-circle-chevron-down"></i>Show More</button>
+                </div>
+            </div>
+        </div>
+        <!-- akhir konten -->
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+
+        <!-- akhir coba tampilan -->
+
+        <!-- main program -->
     <div class="container my-2" id="container">
         <a class="btn btn-primary" href="form/tambahBarang.php">Tambah</a>
         <div class="row mt-4">
@@ -56,6 +121,8 @@
             </div>
         </div>
     </div>
+    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -71,9 +138,10 @@
                             <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
+                                        <img class="card-img-top" src="`+ value.thumbnail +`"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Rp.` + value.harga_barang + `</p>
-                                        <p class="card-text">Stok ` + value.stok_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
                                         <div class="btn-group btn-group-sm" style="float:right">                                    

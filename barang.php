@@ -33,6 +33,11 @@ class Barang
         $sql = $this->db->query($query);
         $data = [];
         while ($row = $sql->fetch_assoc()){
+            if (file_exists("img/{$row['ID']}.jpg")) {
+                $row['thumbnail']= "img/{$row['ID']}.jpg";
+              } else {
+                $row['thumbnail']= "img/noImage.jpg";   
+              }
             array_push($data, $row);
         }
         header("Content-Type: application/json");
