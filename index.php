@@ -26,6 +26,7 @@
 
 <body>
     <!-- coba tampilan -->
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="index.php">Inventaris Online</a>
@@ -57,6 +58,7 @@
             </div>
         </div>
     </nav>
+    <!-- akhir navbar -->
 
     <!-- Header-->
     <header class="bg-dark py-5">
@@ -182,15 +184,84 @@
         });
 
         $("#sortKondisi").click(function() {
-            alert("Kondisi");
+            $.post("sort.php", {'data': 'kondisi'}, function (response) {
+                $('#dataHolder').empty();
+                $.each(response, function(key, value) {
+                    $("#dataHolder").append(`
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <h4 class="card-title">` + value.nama_barang + `</h4>
+                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Stok = ` + value.stok_barang + `</p>
+                                        <p class="card-text">Made In ` + value.country + `</p>
+                                        <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
+                                        <div class="btn-group btn-group-sm" style="float:right">                                    
+                                            <a href="form/editBarang.php?id=` + value.ID + `" class="btn btn-outline-secondary fa fa-edit"></a>
+                                            <button type="button" id="deleteBarang" value="` + value.nama_barang +
+                        `&` + value.ID + `" class="btn btn-outline-danger fa fa-trash"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    `);
+                });
+            })
         });
 
         $("#sortAsal").click(function() {
-            alert("Asal");
+            $.post("sort.php", {'data': 'asal'}, function (response) {
+                $('#dataHolder').empty();
+                $.each(response, function(key, value) {
+                    $("#dataHolder").append(`
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <h4 class="card-title">` + value.nama_barang + `</h4>
+                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Stok = ` + value.stok_barang + `</p>
+                                        <p class="card-text">Made In ` + value.country + `</p>
+                                        <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
+                                        <div class="btn-group btn-group-sm" style="float:right">                                    
+                                            <a href="form/editBarang.php?id=` + value.ID + `" class="btn btn-outline-secondary fa fa-edit"></a>
+                                            <button type="button" id="deleteBarang" value="` + value.nama_barang +
+                        `&` + value.ID + `" class="btn btn-outline-danger fa fa-trash"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    `);
+                });
+            })
         });
 
         $("#sortNama").click(function() {
-            alert("Nama");
+            $.post("sort.php", {'data': 'nama'}, function (response) {
+                $('#dataHolder').empty();
+                $.each(response, function(key, value) {
+                    $("#dataHolder").append(`
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <h4 class="card-title">` + value.nama_barang + `</h4>
+                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Stok = ` + value.stok_barang + `</p>
+                                        <p class="card-text">Made In ` + value.country + `</p>
+                                        <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
+                                        <div class="btn-group btn-group-sm" style="float:right">                                    
+                                            <a href="form/editBarang.php?id=` + value.ID + `" class="btn btn-outline-secondary fa fa-edit"></a>
+                                            <button type="button" id="deleteBarang" value="` + value.nama_barang +
+                        `&` + value.ID + `" class="btn btn-outline-danger fa fa-trash"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    `);
+                });
+            })
         });
 
         $("#searchButton").click(function() {
@@ -219,7 +290,6 @@
                     `);
                 });
             })
-            //$('#dataHolder')
         });
     });
     </script>
