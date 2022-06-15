@@ -14,6 +14,7 @@ $data = [];
 while ($row = $sql->fetch_assoc()){
     array_push($data, $row);
 }
+
 $sql->close();
 header("Content-Type: application/json");
 echo json_encode($data);

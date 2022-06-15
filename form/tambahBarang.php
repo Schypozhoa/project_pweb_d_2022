@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +55,7 @@
 
     <!-- konten -->
     <div class="container mt-5" id="container">
-        <form>
+        <form method="POST" enctype='multipart/form-data'>
             <div class="row mb-3">
                 <label for="anime" class="col-sm-2 col-form-label">Nama Barang *</label>
                 <div class="col-sm-10">
@@ -102,6 +103,14 @@
                 </select>
               </div>
             </div>
+            
+            <div class="row mb-3">
+                <label for="formFile" class="col-sm-2 col-form-label">Add Image *</label>
+                <div class="col-sm-10">
+                    <input class="form-control" accept="image/*" name="image" type="file" id="image" required="required">
+                    <!-- Auto Fill -->
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <div class="offset-sm-2 col-sm-10">
@@ -111,6 +120,7 @@
                             class="fa-solid fa-arrow-left me-2"></i>Back</a>
                 </div>
             </div>
+
         </form>
     </div>
     <!-- akhir konten -->
@@ -137,14 +147,31 @@
                         $("#id_kondisi").append("<option value='"+ value.id_kondisi +"'>"+ value.kondisi +"</option>")
                     })
                 })
-                $("form").submit(function (event) {
-                    event.preventDefault();
-                    var data = $(this).serialize();
-                    $.post("../barang.php?action=createBarang", data, function (response) {
-                        alert("Data barang baru berhasil ditambahkan");
-                        window.location=document.referrer;
-                    })
-                })
+                // $("form").submit(function (event) {
+                //     event.preventDefault();
+                //     var data = $(this).serialize();
+                //     $.post("../barang.php?action=createBarang", data, function (response) {
+                //         alert("Data barang baru berhasil ditambahkan");
+                //         window.location=document.referrer;
+                //     })
+                // })
+                $("form").submit(function(event) {
+                    event.preventDefault();    
+                    // var formData = new FormData(this);
+                    var formData = new FormData(this);
+                    $.ajax({
+                        url: "../barang.php?action=createBarang",
+                        type: 'POST',
+                        data: formData,
+                        success: function (data) {
+                            alert('Data barang baru berhasil ditambahkan');
+                            window.location=document.referrer;
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+                });
             });
         </script>
 </body>

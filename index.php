@@ -135,9 +135,9 @@
                             <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <img class="card-img-top" src="` + value.gambar + `"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.formatRupiah + `</p>
                                         <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
@@ -151,7 +151,7 @@
                             </div>
                             `);
                 });
-                page += 15;
+                page += 3;
                 $('#load').html("<i class='fa-solid fa-circle-chevron-down me-2'></i>Show More")
                     .removeAttr('disabled');
             });
@@ -188,12 +188,12 @@
                 $('#dataHolder').empty();
                 $.each(response, function(key, value) {
                     $("#dataHolder").append(`
-                            <div class="col-4">
+                    <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <img class="card-img-top" src="` + value.gambar + `"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.formatRupiah + `</p>
                                         <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
@@ -215,12 +215,12 @@
                 $('#dataHolder').empty();
                 $.each(response, function(key, value) {
                     $("#dataHolder").append(`
-                            <div class="col-4">
+                    <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <img class="card-img-top" src="` + value.gambar + `"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.formatRupiah + `</p>
                                         <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
@@ -242,12 +242,12 @@
                 $('#dataHolder').empty();
                 $.each(response, function(key, value) {
                     $("#dataHolder").append(`
-                            <div class="col-4">
+                    <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <img class="card-img-top" src="` + value.gambar + `"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.formatRupiah + `</p>
                                         <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>
@@ -270,12 +270,12 @@
                 $('#dataHolder').empty();
                 $.each(response, function(key, value) {
                     $("#dataHolder").append(`
-                            <div class="col-4">
+                    <div class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="` + value.thumbnail + `"/>
+                                        <img class="card-img-top" src="` + value.gambar + `"/>
                                         <h4 class="card-title">` + value.nama_barang + `</h4>
-                                        <p class="card-text">Harga = Rp.` + value.harga_barang + `</p>
+                                        <p class="card-text">Harga = Rp.` + value.formatRupiah + `</p>
                                         <p class="card-text">Stok = ` + value.stok_barang + `</p>
                                         <p class="card-text">Made In ` + value.country + `</p>
                                         <p class="card-text">Kondisi =  ` + value.kondisi + `</p>

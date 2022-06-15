@@ -36,11 +36,7 @@ switch ($query) {
 $result = $db->query($sql);
 $response = [];
 while ($row = $result->fetch_assoc()) {
-    if (file_exists("img/{$row['ID']}.jpg")) {
-        $row['thumbnail']= "img/{$row['ID']}.jpg";
-      } else {
-        $row['thumbnail']= "img/noImage.jpg";   
-      }
+    $row['formatRupiah'] = number_format($row['harga_barang'], 2, ",", ".");
     array_push($response, $row);
 }
 header("Content-Type: application/json");
