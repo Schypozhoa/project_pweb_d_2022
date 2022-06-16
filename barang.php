@@ -48,7 +48,7 @@ class Barang
                 ON b.asal = a.asal_id
                 INNER JOIN kondisi AS k
                 ON b.kondisi = k.id_kondisi
-                WHERE b.id = $id LIMIT";
+                WHERE b.id = $id";
         $sql = $this->db->query($query);
         $data = [];
         while ($row = $sql->fetch_assoc()){
